@@ -5,7 +5,7 @@ import requests
 import certifi
 
 def movie_poster(movieid):
-    response=requests.get('https://api.themoviedb.org/3/movie/{}?api_key=83766519875d54927b6ec415849dc30b&language=en-US'.format(movieid))
+    response=requests.get('https://api.themoviedb.org/3/movie/{}?api_key=(Add your apikey from TMDB website)&language=en-US'.format(movieid))
     data=response.json()
     return "https://image.tmdb.org/t/p/w500/"+data['poster_path']
 def recommend(movie):
@@ -19,9 +19,9 @@ def recommend(movie):
         recommended_movies.append(movies.iloc[i[0]].title)
         movie_posters.append(movie_poster(movie_id))
     return recommended_movies,movie_posters
-movies_list=pickle.load(open('C:/Users/HITESH KRISHNA/Desktop/Projects/ML Projects/movies.pkl','rb'))
+movies_list=pickle.load(open('(Where the pkl file is located)','rb'))
 movies=pd.DataFrame(movies_list)
-similarity=pickle.load(open('C:/Users/HITESH KRISHNA/Desktop/Projects/ML Projects/similarity.pkl','rb'))
+similarity=pickle.load(open('(Where the pkl file is located)','rb'))
 
 st.title(":blue[Movie Recommendation System]")
 option=st.selectbox(":red[Select the movie you want to watch!!]",movies['title'].values)
